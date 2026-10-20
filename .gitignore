@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/__pycache__/
+**/.venv/
+**/settings.json
+**/reports/
+**/*.ini
+**/*.log
+**/*.key
+.env*
