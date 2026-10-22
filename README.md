@@ -72,3 +72,7 @@ Built by Casey Shingledecker with AI-assisted development.
 
 - Portfolio and live demos: https://caseyshingledecker.com/
 - All repositories: https://github.com/Beebopcat
+
+## License
+
+Copyright (c) 2026 Casey Shingledecker. All rights reserved. Source-available for viewing and for personal, non-commercial running only; this is not open source. See [LICENSE](LICENSE). Other people's material keeps its own license; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
