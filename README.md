@@ -6,6 +6,35 @@
 
 ![Desktop Tools page scrolled to the OCR Boxes card, with its description, feature bullets and verification notes.](docs/media/site-01.webp)
 
+### Why it matters
+
+Accessibility and automation on Windows: screen-region OCR (built-in Windows OCR or optional CPU RapidOCR) feeding text-to-speech, with up to four independent boxes, a per-box voice, a speech queue and a layout checked at 96 and 120 DPI. Privacy is part of the design: the log records timings only, never the captured text.
+
+**Stack:** AutoHotkey v2, Windows OCR (Descolada library), RapidOCR (optional, Python), Kokoro TTS service or SAPI voices, PowerShell setup script.
+
+### Proof
+
+- **Built-in self-test, run on a clean clone on Windows 11 (AutoHotkey 2.0.26): 105 checks, 104 pass, 1 fail.** The one failure checks for a private helper at `C:\AI_Workspace\tools\rapidocr-gvr\rapid_server.py` that is not part of this repository. Re-run with `AutoHotkey64.exe "OcrBoxes\OCR Boxes.ahk" --selftest result.txt`. Some checks are informational and depend on what is running on the machine (for example whether a Kokoro service answers on port 8787).
+- The AutoHotkey entry script passes AutoHotkey's `/Validate` syntax check.
+- Screenshot of the project page above.
+
+### Quick start
+
+```powershell
+git clone https://github.com/Beebopcat/ocr-boxes.git
+# install AutoHotkey v2, then run:
+AutoHotkey64.exe "ocr-boxes\OcrBoxes\OCR Boxes.ahk"
+```
+
+### Limitations
+
+- Windows 10/11 with AutoHotkey v2 only. Boxes cover fixed screen areas; they do not track windows or capture in the background.
+- Kokoro playback needs your own compatible local service at 127.0.0.1:8787. No voice models are included.
+- The self-test opens windows and uses your displays, so it is a desktop check rather than a CI test. One test needs a private helper that is not in this repository (see Proof). Headset sound and native Edge speech were not independently verified.
+- Built with AI-assisted development.
+
+---
+
 ## What it is
 
 A Windows desktop OCR and text-to-speech tool. Place up to four adjustable boxes over visible text, in ordinary windows or across displays, and have it read aloud with a voice player you choose. Windows OCR is built in; CPU RapidOCR is optional. The application starts stopped.
@@ -59,7 +88,7 @@ The source package excludes personal settings, game inventory, captured text, lo
 
 ## Validation
 
-16 silent per-box/queue/layout checks and 105 existing self-tests passed on the author's Windows PC. Actual headset sound and native Edge speech have not been independently verified. Tests do not establish compatibility with every display, game or voice service.
+The author reported that 16 silent per-box/queue/layout checks and 105 existing self-tests passed on their Windows PC. A re-run on a clean clone on 2026-10-25 gave 104 of 105 passing; the one failure needs a private helper that is not in this repository (see Proof). Actual headset sound and native Edge speech have not been independently verified. Tests do not establish compatibility with every display, game or voice service.
 
 ## Credits & disclaimers
 
